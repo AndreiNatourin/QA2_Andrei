@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test;
 
 public class Percentage {
     @Test
-    public float countAndreikaPercent(float a, float b) {
+    public float countAndreiPercent(float a, float b) {
         float c;
 
         c = (a * 100.0f) / b;
@@ -16,10 +16,10 @@ public class Percentage {
         float amount = 10;
         float percent;
 
-        System.out.println(countAndreikaPercent(10, 100));
+        System.out.println(countAndreiPercent(10, 100));
 
         percent = (amount*100.0f) / from;
-        System.out.println("from" + from + "amounxt of" + amount + "is" + percent + "%");
+        System.out.println("from" + from + "amount of" + amount + "is" + percent + "%");
     }
 
     @Test
