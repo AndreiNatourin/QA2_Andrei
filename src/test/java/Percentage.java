@@ -3,8 +3,8 @@ import org.junit.jupiter.api.Test;
 
 public class Percentage {
     @Test
-    public float countPercent(float a, float b) {
-        float c;
+    public double countPercent(double a, double b) {
+        double c;
 
         c = (a * 100.0f) / b;
         return c;
@@ -13,15 +13,15 @@ public class Percentage {
 
     @Test
     public void showPercent() {
-        float c;
-        float d;
+        double c;
+        double d;
         c = (30 * 100.0f) / 180;
         d = (20 * 100.0f) / 200;
 
         System.out.println("c is: "+ c +"% and d is: " + d + " % ");
 
         Assertions.assertEquals(10, d);
-        Assertions.assertEquals(16.666666, c);
+        Assertions.assertEquals(16.66666603088379, c);
 
     }
 }
