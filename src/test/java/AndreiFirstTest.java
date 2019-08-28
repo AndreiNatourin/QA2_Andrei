@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class AndreiFirstTest {
@@ -14,6 +15,9 @@ public class AndreiFirstTest {
         d = sum(25, 15);
 
         System.out.println("c is:" + c + " and d is:" + d);
+
+        Assertions.assertEquals(20, c);
+
 
     }}
 

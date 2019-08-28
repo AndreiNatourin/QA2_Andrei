@@ -1,0 +1,46 @@
+Index: src/test/java/Percentage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/java/Percentage.java	(revision fdfbc2e18ce8c22832d920f642827dc79f1d9909)
++++ src/test/java/Percentage.java	(date 1566986197781)
+@@ -1,25 +1,14 @@
++import org.junit.jupiter.api.Assertions;
+ import org.junit.jupiter.api.Test;
+ 
+ public class Percentage {
+     @Test
+-    public float countAndreiPercent(float a, float b) {
++    public float countPercent(float a, float b) {
+         float c;
+ 
+         c = (a * 100.0f) / b;
+-
+         return c;
+-    }
+-
+-    @Test
+-    public void countPercent () {
+-        float from = 200;
+-        float amount = 10;
+-        float percent;
+-
+-        System.out.println(countAndreiPercent(10, 100));
+-
+-        percent = (amount*100.0f) / from;
+-        System.out.println("from" + from + "amount of" + amount + "is" + percent + "%");
++
+     }
+ 
+     @Test
+@@ -31,6 +20,9 @@
+ 
+         System.out.println("c is: "+ c +"% and d is: " + d + " % ");
+ 
++        Assertions.assertEquals(10, d);
++        Assertions.assertEquals(16.666666, c);
++
+     }
+ }
+ 
