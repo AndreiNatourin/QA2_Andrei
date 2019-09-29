@@ -6,7 +6,7 @@ public class Percentage {
     public double countPercent(double a, double b) {
         double c;
 
-        c = (a * 100.0f) / b;
+             c = (a * 100.0f) / b;
         return c;
 
     }
