@@ -1,11 +1,11 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import sun.jvm.hotspot.utilities.Assert;
 
-import java.sql.Driver;
+
 
 public class AutomationFirstPractice {
 
@@ -34,8 +34,11 @@ public class AutomationFirstPractice {
         WebElement subCategoryDresses = driver.findElement(SUBCATEGORY_DRESSES);
         String dressesCategoryToCompare = subCategoryDresses.getText();
 
+        Assertions.assertEquals(subdepartmentTops, subCategoryTops, "not the same");
+        Assertions.assertEquals(subdepartmentDresses, subCategoryDresses, "not the same");
 
-        //driver.get("http://automationpractice.com/index.php?id_category=3&controller=category");
+
+
     }
 
     //public void findWoman() {
