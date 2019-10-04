@@ -1,10 +1,13 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+//import java.util.function.Supplier;
 
+import org.openqa.selenium.chrome.ChromeOptions;
 
 
 public class AutomationFirstPractice {
@@ -34,16 +37,46 @@ public class AutomationFirstPractice {
         WebElement subCategoryDresses = driver.findElement(SUBCATEGORY_DRESSES);
         String dressesCategoryToCompare = subCategoryDresses.getText();
 
-        Assertions.assertEquals(subdepartmentTops, subCategoryTops, "not the same");
-        Assertions.assertEquals(subdepartmentDresses, subCategoryDresses, "not the same");
-
-
-
+        Assertions.assertEquals(topsToCompare, dressesToCompare, "not the same");
+        Assertions.assertEquals(topsCategoryToCompare, dressesCategoryToCompare, "not the same");
     }
+    private final By DEPARTMENT_WOMEN_S = By.xpath(".//h2 [@class = 'title_block']");
+    private final By SUBDEPARTMENT_TOPS_S = By.xpath(".//a[contains (@title, 'tops')]");
+    private final By SUBDEPARTMENT_DRESSES_S = By.xpath(".//a[contains (@title, 'dresses')]");
+    private final By SUBCATEGORY_TOPS_S = By.xpath(".//a[contains (@href, '4&controller=category')]");
+    private final By SUBCATEGORY_DRESSES_S = By.xpath(".//a[contains (@href, '8&controller=category')]");
 
-    //public void findWoman() {
-        //WebDriver driver = new ChromeDriver();
-        //driver.findElement(By.linkText("Women")).click();
+    @Test
+    public void resizeWindow () {
+        Dimension dimension = new Dimension(800, 600);
+        System.setProperty("webdriver.chrome.driver", "c:/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        //driver.manage().window().maximize();
+        driver.manage().window().setSize(dimension);
+
+        WebElement subdepartmentTopsS = driver.findElement(SUBDEPARTMENT_TOPS_S);
+        String subdepartmentTopsSText = subdepartmentTopsS.getText();
+        WebElement subdepartmentDressesS = driver.findElement(SUBDEPARTMENT_DRESSES_S);
+        String subdepartmentDressesSText = subdepartmentDressesS.getText();
+        WebElement subCategoryTopsS = driver.findElement(SUBCATEGORY_TOPS_S);
+        String subCategoryTopsSText = subCategoryTopsS.getText();
+        WebElement subCategoryDressesS = driver.findElement(SUBCATEGORY_DRESSES_S);
+        String subCategoryDressesSText = subCategoryDressesS.getText();
+
+        Assertions.assertEquals(subdepartmentDressesSText, subCategoryDressesSText, "not the same");
+        Assertions.assertEquals(subdepartmentTopsSText, subCategoryTopsSText, "not the same");
+
+        //ChromeOptions options = new ChromeOptions();
+        //options.addArguments("window-size=800,480");
+
+       //DesiredCapabilities cap = DesiredCapabilities.chrome();
+        //cap.setCapability(ChromeOptions.CAPABILITY, options);
+
+        //this will open chrome with set size
+        //WebDriver driver = new ChromeDriver(capabilities);
+
+        //driver.get("https://www.testingexcellence.com/");
+    }
 
 }
 
