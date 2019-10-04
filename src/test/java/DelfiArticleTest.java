@@ -41,26 +41,26 @@ private final By ARTICLE = By.xpath(".//span [@class = 'text-size-22 d-block']")
        };
 
        //Save to Integer
-        String  commentsToParse = homePageComments.getText(); //(1)
+        String  commentsToParse = article.getText(); //(1)
     commentsToParse = commentsToParse.substring(1, commentsToParse.length() -1);
-    Integer commentsToCompare = Integer.valueOf(commentsToParse);
+  //  Integer commentsToCompare = Integer.valueOf(commentsToParse);
         //Open articles page
        homePageTitle.click();
        //Find article title
 driver.findElement(ARTICLE_PAGE_TITLE).getText();
 String apTitle = driver.findElement(ARTICLE_PAGE_TITLE).getText();
        //Check title
-       Assertions.assertEquals(titleToCompare, apTitle, "wrong title on article title");
+   //    Assertions.assertEquals(titleToCompare, apTitle, "wrong title on article title");
        //find comments count //Save to Integer don't do like this
        Integer apComments = Integer.valueOf(driver.findElement(ARTICLE_PAGE_COMMENTS).getText().substring(1, driver.findElement(ARTICLE_PAGE_COMMENTS).getText().length() - 1));
 
        //Check count
-       Assertions.assertEquals(commentsToCompare, apComments, "comments count is not same as on home page");
+  //     Assertions.assertEquals(commentsToCompare, apComments, "comments count is not same as on home page");
        //open comments page save to String
        driver.findElement(ARTICLE_PAGE_COMMENTS).click();
        String cpTitle = driver.findElement(COMMENT_PAGE_TITLE).getText();
        //Check title
-       Assertions.assertEquals(titleToCompare, cpTitle, "Some text here");
+  //     Assertions.assertEquals(titleToCompare, cpTitle, "Some text here");
 
        //Find article title
        //Save to Integer
