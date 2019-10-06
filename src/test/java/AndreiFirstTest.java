@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 public class AndreiFirstTest {
 
     private Integer sum(Integer a, Integer b) {
+
         return a + b;    }
 
     @Test

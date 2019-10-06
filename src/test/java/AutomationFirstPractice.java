@@ -5,15 +5,12 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-//import java.util.function.Supplier;
-
-import org.openqa.selenium.chrome.ChromeOptions;
 
 
 public class AutomationFirstPractice {
 
-   private final By DEPARTMENT_WOMEN = By.xpath(".//a [@class = 'sf-with-ul']");
-   private final By SUBDEPARTMENT_TOPS = By.xpath(".//a[contains (@title, 'tops')]");
+    private final By DEPARTMENT_WOMEN = By.xpath(".//a [@class = 'sf-with-ul']");
+    private final By SUBDEPARTMENT_TOPS = By.xpath(".//a[contains (@title, 'tops')]");
     private final By SUBDEPARTMENT_DRESSES = By.xpath(".//a[contains (@title, 'dresses')]");
     private final By SUBCATEGORY_TOPS = By.xpath(".//a[contains (@href, '4&controller=category')]");
     private final By SUBCATEGORY_DRESSES = By.xpath(".//a[contains (@href, '8&controller=category')]");
@@ -40,6 +37,7 @@ public class AutomationFirstPractice {
         Assertions.assertEquals(topsToCompare, dressesToCompare, "not the same");
         Assertions.assertEquals(topsCategoryToCompare, dressesCategoryToCompare, "not the same");
     }
+
     private final By DEPARTMENT_WOMEN_S = By.xpath(".//h2 [@class = 'title_block']");
     private final By SUBDEPARTMENT_TOPS_S = By.xpath(".//a[contains (@title, 'tops')]");
     private final By SUBDEPARTMENT_DRESSES_S = By.xpath(".//a[contains (@title, 'dresses')]");
@@ -47,7 +45,7 @@ public class AutomationFirstPractice {
     private final By SUBCATEGORY_DRESSES_S = By.xpath(".//a[contains (@href, '8&controller=category')]");
 
     @Test
-    public void resizeWindow () {
+    public void resizeWindow() {
         Dimension dimension = new Dimension(800, 600);
         System.setProperty("webdriver.chrome.driver", "c:/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
@@ -66,16 +64,7 @@ public class AutomationFirstPractice {
         Assertions.assertEquals(subdepartmentDressesSText, subCategoryDressesSText, "not the same");
         Assertions.assertEquals(subdepartmentTopsSText, subCategoryTopsSText, "not the same");
 
-        //ChromeOptions options = new ChromeOptions();
-        //options.addArguments("window-size=800,480");
-
-       //DesiredCapabilities cap = DesiredCapabilities.chrome();
-        //cap.setCapability(ChromeOptions.CAPABILITY, options);
-
-        //this will open chrome with set size
-        //WebDriver driver = new ChromeDriver(capabilities);
-
-        //driver.get("https://www.testingexcellence.com/");
+        
     }
 
 }
