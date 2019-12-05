@@ -1,4 +1,4 @@
-package UdemyJava;
+package udemyJava;
 
 public class OutPractice {
     public static void main (String [] args) {
@@ -11,6 +11,8 @@ public class OutPractice {
         System.out.println(3);
         System.out.println(6);
         System.out.println(9);
+
+        System.out.println("I'ļl learn ");
     }
 
 }

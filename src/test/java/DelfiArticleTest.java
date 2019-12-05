@@ -1,74 +1,84 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import java.util.List;
 
 public class DelfiArticleTest {
 
-private final By HOME_PAGE_TITLE = By.xpath(".//h1[contains(@class, 'text-size-22')]");
-private final By HOME_PAGE_COMMENTS = By.xpath(".//a[@class = 'comment-count text-red-ribbon']");
-private final By ARTICLE_PAGE_TITLE = By.xpath(".//h1[contains (@class, 'text-size-22')]");
-private final By ARTICLE_PAGE_COMMENTS = By.xpath(".//a [contains (@class, 'text-size-md-28')]");
-private final By COMMENT_PAGE_TITLE = By.xpath(".//h1[@class = 'article-title']/a");
-private final By ARTICLE = By.xpath(".//span [@class = 'text-size-22 d-block']");
+    private final By HOME_PAGE_TITLE = By.xpath(".//h1[contains(@class, 'text-size-22')]");
+    private final By HOME_PAGE_COMMENTS = By.xpath(".//a[@class = 'comment-count text-red-ribbon']");
+    private final By ARTICLE_PAGE_TITLE = By.xpath(".//h1[contains (@class, 'text-size-md-30')]");
+    private final By ARTICLE_PAGE_COMMENTS = By.xpath(".//a[contains (@class, 'text-size-19')]");
+    private final By COMMENT_PAGE_TITLE = By.xpath(".//h1[@class = 'article-title']/a");
+    private final By ARTICLE = By.xpath(".//span [@class = 'text-size-22 d-block']");
+    private final By COMMENT_PAGE_COMMENT = By.xpath(".//span [@class = 'type-cnt']");
+    private static final Logger LOGGER = LogManager.getLogger(DelfiArticleTest.class);
 
 
-   @Test
-   public void titleAndCommentsTest() {
+    @Test
+    public void titleAndCommentsTest() {
 
-       //open browser
-       System.setProperty("webdriver.chrome.driver", "c:/chromedriver.exe");
-       WebDriver driver = new ChromeDriver();
-       driver.manage().window().maximize();
-       //open Delfi home page
-       driver.get("http://rus.delfi.lv");
+        LOGGER.info("Open Chrome browser");
 
-       WebElement article = driver.findElements(ARTICLE).get(0);
-       //find 1st article title
-       WebElement homePageTitle = article.findElements(HOME_PAGE_TITLE).get(0);
+        System.setProperty("webdriver.chrome.driver", "c:/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
 
-       //save to  string
-       String titleToCompare = homePageTitle.getText();
+        LOGGER.info("Open Delfi home page");
+        driver.get("http://rus.delfi.lv");
 
-       //Find comments count
-       Integer commentsToCompare = 0;
-        if (article.findElements(HOME_PAGE_COMMENTS).isEmpty()) {
-            commentsToCompare = 0;
-            } else {
-            WebElement homePageComments = article.findElement(HOME_PAGE_COMMENTS);
-       };
+        LOGGER.info("Find first article. Save title");
+        WebElement article = driver.findElements(ARTICLE).get(0);
+        WebElement homePageTitle = driver.findElements(HOME_PAGE_TITLE).get(0);
+        String titleToCompare = homePageTitle.getText().trim();
 
-       //Save to Integer
-        String  commentsToParse = article.getText(); //(1)
-    commentsToParse = commentsToParse.substring(1, commentsToParse.length() -1);
-  //  Integer commentsToCompare = Integer.valueOf(commentsToParse);
-        //Open articles page
-       homePageTitle.click();
-       //Find article title
-driver.findElement(ARTICLE_PAGE_TITLE).getText();
-String apTitle = driver.findElement(ARTICLE_PAGE_TITLE).getText();
-       //Check title
-   //    Assertions.assertEquals(titleToCompare, apTitle, "wrong title on article title");
-       //find comments count //Save to Integer don't do like this
-       Integer apComments = Integer.valueOf(driver.findElement(ARTICLE_PAGE_COMMENTS).getText().substring(1, driver.findElement(ARTICLE_PAGE_COMMENTS).getText().length() - 1));
+        LOGGER.info("Find comments count. Save");
+        Integer commentsToCompare = 0;
+        if (!driver.findElements(HOME_PAGE_COMMENTS).isEmpty()) { //! menjaet znachenie na protivopolozhnoe
+                        WebElement homePageComments = driver.findElement(HOME_PAGE_COMMENTS);
 
-       //Check count
-  //     Assertions.assertEquals(commentsToCompare, apComments, "comments count is not same as on home page");
-       //open comments page save to String
-       driver.findElement(ARTICLE_PAGE_COMMENTS).click();
-       String cpTitle = driver.findElement(COMMENT_PAGE_TITLE).getText();
-       //Check title
-  //     Assertions.assertEquals(titleToCompare, cpTitle, "Some text here");
+            String commentsToParse = homePageComments.getText();
+            commentsToParse = commentsToParse.substring(1, commentsToParse.length()- 1);
+            commentsToCompare = Integer.valueOf(commentsToParse);
+        }
+        LOGGER.info("Open article. Save and check title");
+        homePageTitle.click();
+        String apTitle = driver.findElement(ARTICLE_PAGE_TITLE).getText().trim();
+        Assertions.assertEquals(titleToCompare, apTitle, "wrong title on article page");
 
-       //Find article title
-       //Save to Integer
-       //Check title
-       //find comments count
-       //Save to Integer
-       //Check count
+        LOGGER.info("Find, save and check comments count");
+        Integer apComments = Integer.valueOf(driver.findElement(ARTICLE_PAGE_COMMENTS).getText().substring(1, driver.findElement(ARTICLE_PAGE_COMMENTS).getText().length() - 1));
+
+        Assertions.assertEquals(commentsToCompare, apComments, "wrong comments count on article page");
+
+        LOGGER.info("Open comments page. Save and check title");
+        driver.findElement(ARTICLE_PAGE_COMMENTS).click();
+        String cpTitle = driver.findElement(COMMENT_PAGE_TITLE).getText().trim();
+
+        Assertions.assertEquals(titleToCompare, cpTitle, "wrong title on comment page");
+
+        LOGGER.info("Find, save and check comments count");
+
+        Integer cpCommentsToCompare  = 0;
+        if (!driver.findElements(COMMENT_PAGE_COMMENT).isEmpty()) {
+            WebElement cpComments = driver.findElement(COMMENT_PAGE_COMMENT);
+
+            String cpCommentsToParse = cpComments.getText();
+            cpCommentsToParse = cpCommentsToParse.substring(1, cpCommentsToParse.length()- 1);
+            cpCommentsToCompare = Integer.valueOf(cpCommentsToParse);
+        }
+
+        Assertions.assertEquals(commentsToCompare, cpCommentsToCompare, "Wrong comments count on comments page");
+
+        driver.close();
+        System.out.println("Everything is OK!");
 
 
     }
 }
+
