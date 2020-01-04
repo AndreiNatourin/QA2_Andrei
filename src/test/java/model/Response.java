@@ -17,7 +17,7 @@ public class Response {
     private Clouds clouds;
     private Double dt;
     private Sys sys;
-    private Double general_id;
+    private Double id;
     private String name;
     private Double cod;
 
@@ -94,12 +94,12 @@ public class Response {
         this.sys = sys;
     }
 
-    public Double getGeneral_id() {
-        return general_id;
+    public Double getId() {
+        return id;
     }
 
-    public void setGeneral_id(Double general_id) {
-        this.general_id = general_id;
+    public void setId(Double id) {
+        this.id = id;
     }
 
     public String getName() {

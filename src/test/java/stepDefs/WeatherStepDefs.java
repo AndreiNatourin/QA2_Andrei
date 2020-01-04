@@ -105,7 +105,7 @@ public class WeatherStepDefs {
     }
     @Then("sys_id is (.*)")
     public void check_sys_id(Double sys_id){
-        Assertions.assertEquals(sys_id, response.getSys().getSys_id(), "Wrong sys_id!");
+        Assertions.assertEquals(sys_id, response.getSys().getId(), "Wrong id!");
     }
     @Then("message is (.*)")
     public void check_message(Double message){
@@ -123,9 +123,9 @@ public class WeatherStepDefs {
     public void check_sunset(Double sunset){
         Assertions.assertEquals(sunset, response.getSys().getSunset(), "Wrong sunset!");
     }
-    @Then("general id is (.*)")
+    @Then("general_id is (.*)")
     public void check_general_id(Double general_id){
-        Assertions.assertEquals(general_id, response.getGeneral_id(), "Wrong general id!");
+        Assertions.assertEquals(general_id, response.getId(), "Wrong general id!");
     }
     @Then("name is (.*)")
     public void check_name(String name){

@@ -2,7 +2,7 @@ package model;
 
 public class Sys {
     private Double type;
-    private Double sys_id;
+    private Double id;
     private Double message;
     private String country;
     private Double sunrise;
@@ -16,12 +16,12 @@ public class Sys {
         this.type = type;
     }
 
-    public Double getSys_id() {
-        return sys_id;
+    public Double getId() {
+        return id;
     }
 
-    public void setSys_id(Double sys_id) {
-        this.sys_id = sys_id;
+    public void setId(Double id) {
+        this.id = id;
     }
 
     public Double getMessage() {

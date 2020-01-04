@@ -55,7 +55,8 @@ public class AutomationFirstPractice {
     private final By CATEGORIES_S = By.xpath(".//div [contains (@class, 'cat-title')]");
     private final By DEPARTMENT_WOMEN_S = By.xpath(".//a [contains (@title, 'Women')]");
     private final By SUBDEPARTMENT_TOPS_S = By.xpath(".//a[contains (@href, '4&controller=category')]");
-    private final By SUBDEPARTMENT_DRESSES_S = By.xpath(".//a[contains (@title, 'dresses')]");
+    private final By SUBDEPARTMENT_DRESSES_S = By.xpath(".//a[contains(@href, 'id_category=8&')]");
+
     private final By SUBCATEGORY_TOPS_S = By.xpath(".//a[contains (@href, '4&controller=category')]");
     private final By SUBCATEGORY_DRESSES_S = By.xpath(".//a[contains (@href, '8&controller=category')]");
 
